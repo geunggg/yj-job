@@ -1,0 +1,313 @@
+<!-- 능력단위평가 _ 웹프로그래밍, 서브페이지, 김지은-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <title>목록 < 입학상담 < 대구 국비지원 무료교육 영진직업전문학교</title>
+
+    <style>
+
+        /* 초기화 */
+        * {margin: 0; padding:0;}
+        li {display: inline;}
+        body {font-family:'나눔고딕';}
+        a {text-decoration: none;}
+
+        /* 헤더 부분 */
+
+        header {background-color: white; position:fixed;width:100%; z-index: 9999; border-bottom: 1px solid lightgray;} 
+        
+        /* gnb는 왼쪽정렬, lnb는 중앙정렬 top,bottom 따로 만들기 */
+        header > #header_top {height:30px;}
+        header > #header_top > #header_gnb > ul {text-align: right; margin-right: 30px;}
+        header > #header_top > #header_gnb > ul > li {padding: 4px 10px;}
+        header > #header_top > #header_gnb > ul > li > a {font-size: 10pt ; color:rgb(100, 100, 100);}
+
+        #header_bottom {height:80px;}
+        header > #header_bottom > #header_lnb {width:1080px; margin:0 auto; position: relative;}
+        header > #header_bottom > #header_lnb > #title {position:absolute; left:0; top:0;}
+        header > #header_bottom > #header_lnb > #title > img {float:right;}
+        header > #header_bottom > #header_lnb > ul {position:absolute; top:30px; right:0;}
+        header > #header_bottom > #header_lnb > ul > li {padding: 10px 20px;}
+        header > #header_bottom > #header_lnb > ul > li > a {color: black; font-size: 14pt; font-weight: bold;}
+
+
+        /* 콘텐츠 부분 */
+
+        #contents_wrapper {width:100%;}
+        #contents {width: 1080px; height: 1800px; margin:0 auto; padding-top: 200px;}
+
+        /* radio 버튼, div 숨기기 */
+        /* 콘텐츠1: (입학상담)탭 공간 */
+        #contents_tab > input {display: none;}
+        #contents_tab > div {display: none;}
+
+        #contents_tab > section {width:900px; margin:0 auto;}
+        #contents_tab > section > label {display: block; float:left; width:180px; height:60px; border:1px solid lightgray; box-sizing: border-box; background: white; text-align: center; line-height: 60px; color: #4e4e4e; font-size: 14pt; font-weight: bold;}
+
+        /* 첫번째 라디오 버튼 눌렀을 때 첫번째 div 보여라 ~ */
+        #contents_tab > input:nth-of-type(1):checked ~ div:nth-of-type(1) {display: block;}
+        #contents_tab > input:nth-of-type(2):checked ~ div:nth-of-type(2) {display: block;}
+        #contents_tab > input:nth-of-type(3):checked ~ div:nth-of-type(3) {display: block;}
+        #contents_tab > input:nth-of-type(4):checked ~ div:nth-of-type(4) {display: block;}
+        #contents_tab > input:nth-of-type(5):checked ~ div:nth-of-type(5) {display: block;}
+
+        /* 첫번째 라디오 눌럿을때 라벨 표시 */
+        #contents_tab > input:nth-of-type(1):checked ~ .contents_buttons > label:nth-of-type(1) {background-color:#106aca; border: 1px solid #106aca; color: white; }
+        #contents_tab > input:nth-of-type(2):checked ~ .contents_buttons > label:nth-of-type(2) {background-color:#106aca; border: 1px solid #106aca; color: white; }
+        #contents_tab > input:nth-of-type(3):checked ~ .contents_buttons > label:nth-of-type(3) {background-color:#106aca; border: 1px solid #106aca; color: white; }
+        #contents_tab > input:nth-of-type(4):checked ~ .contents_buttons > label:nth-of-type(4) {background-color:#106aca; border: 1px solid #106aca; color: white; }
+        #contents_tab > input:nth-of-type(5):checked ~ .contents_buttons > label:nth-of-type(5) {background-color:#106aca; border: 1px solid #106aca; color: white; }
+
+        /* 마우스 올렸을 때 라벨 표시 */
+        #contents_tab > section > label:hover {color: white; cursor:pointer; background-color: #60a2e8; border:1px solid #60a2e8;}
+
+        #contents_tab > div li > p {padding-top: 150px; text-align: center; font-size: 20pt; font-weight: bold; color:black;}
+        #contents_tab > div li > .tab_img {width: 1080px;}
+
+        /* 콘텐츠2: 링크 공간 */
+        #contents_tab > div .link1 > ul {padding:50px 0px;}
+        #contents_tab > div .link1 li {cursor: pointer;}
+        #contents_tab > div .link1 li > a {color:black; cursor:pointer; font-size: 11pt;}
+
+        #contents_tab > div .link1 .link2 > a {color:#106aca; cursor: pointer;}
+        #contents_tab > div .link1 .link2 > a:hover {color:#106aca;}
+
+        #contents_tab > div .link1 li > a:hover {color: blueviolet;}
+
+        /* 콘텐츠3: form 공간 */
+        #contents_tab > div .form_box > form {border: 1px solid lightgray; line-height: 30px; height: 130px; overflow:scroll; margin-top: 10px;}
+
+        #contents_tab > div .form_box > .form_b {font-weight: bold; font-size: 12pt;}
+        #contents_tab > div .form_box > #label_box {text-align: right; padding-bottom: 20px;}
+
+        /* 콘텐츠4: 동의, 취소 공간 */
+        #buttons {width:160px; margin: 0 auto;}
+        #buttons > .agree {width:70px; box-sizing: border-box; border:1px solid lightgray; color: gray; text-align: center; border-radius: 5px 5px 5px 5px; float: left;}
+        #buttons > .cancel {margin-right: 10px;} /* 오른쪽 띄우기 */
+        #buttons > .agree a {color:gray;}
+
+        /* 푸터 부분 */
+        footer {background: #333333; padding: 20px 0 ;}
+        footer > #footer_wrapper {width:1200px; margin:0 auto;
+            font-size:11pt; line-height: 25px; color: #aaaaaa;}
+
+        /* 수평선 스타일 바꾸기 dashed(점선) */
+        footer > #footer_wrapper > hr {border: 1px dashed #aaaaaa ; }
+        footer > #footer_wrapper img {width:30px; margin:5px;}
+        
+    </style>
+</head>
+<body>
+    <!--헤더 부분-->
+    <header>
+        <div id="header_top">
+            <nav id="header_gnb">
+                <ul>
+                    <li><a href="#">학생관리</a></li>
+                    <li><a href="#">NCS평가</a></li>
+                    <li><a href="#">시험응시</a></li>
+                    <li><a href="#">정보수정</a></li>
+                    <li><a href="#">회원탈퇴</a></li>
+                    <li><a href="#">로그아웃</a></li>
+                    <li><a href="#">사이트맵</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div id="header_bottom">
+            <nav id="header_lnb">
+                <div id="title"><img src="images/kb_log.png"><br>
+                    <img src="images/yj_log.png"></div>
+                <ul>
+                    <li><a href="#">모집과정</a></li>
+                    <li><a href="#">입학상담</a></li>
+                    <li><a href="#">과정소개</a></li>
+                    <li><a href="#">취업센터</a></li>
+                    <li><a href="#">커뮤니티</a></li>
+                    <li><a href="#">학교소개</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!--콘텐츠 부분-->
+    <div id="contents_wrapper">
+        <div id="contents">
+            <!--콘텐츠1: (입학상담)탭 공간-->
+            <div id="contents_tab">
+                <input id="contents_1" type="radio" name="contents_tab" checked="checked"/>
+                <input id="contents_2" type="radio" name="contents_tab"/>
+                <input id="contents_3" type="radio" name="contents_tab"/>
+                <input id="contents_4" type="radio" name="contents_tab"/>
+                <input id="contents_5" type="radio" name="contents_tab"/>
+                <section class="contents_buttons">
+                    <label for="contents_1">온라인접수</label>
+                    <label for="contents_2">자주하는 질문</label>
+                    <label for="contents_3">입학상담</label>
+                    <label for="contents_4">접수상태확인</label>
+                    <label for="contents_5">특화과정 입학상담</label>
+                </section>
+                <!--콘텐츠2: 링크 공간-->
+                <div>
+                    <ul>
+                        <li><p>온라인접수</p></li>
+                        <li class="link1">
+                            <ul>
+                                <li><a href="#">>> Home</a></li>
+                                <li>></li>
+                                <li><a href="#">입학상담</a></li>
+                                <li>></li>
+                                <li class="link2"><a href="#">온라인 접수</a></li>
+                            </ul>
+                        </li>
+                        <!--콘텐츠3: form 공간-->
+                        <li class="form_box">
+                            <b class="form_b">> 필수 개인정보의 항목 및 유형</b>
+                            <form>
+                                 <p>
+                                     <br><b>수집항목(필수)</b><br>
+                                        이름, 주민번호, 성별, 전화번호, 주소, 최종학력(졸업구분), 지원경로<br><br>
+                                        아래의 이유로 명시한 기간 동안 보존합니다.<br>
+                                        - 보존 항목: 이름, 주민번호, 성별, 전화번호, 주소, 최종학력(졸업구분), 지원경로<br>
+                                        - 보존 근거: 훈련비용지원, 직업능력개발훈련 카드 발급 개인별 훈련이력 관리 및 정부의 직업능력개발훈련제도 실적,성과 평가, 모니터링 등에 활용<br>
+                                        - 보존 기간: 5년<br><br><br>
+                                </p>
+                            </form>
+                            <div id="label_box">
+                                <label><input type="radio" name="question" value="agree">동의</label>
+                                <label><input type="radio" name="question" value="disagree">비동의</label>
+                            </div>
+                        </li>
+                        <li class="form_box">
+                            <b class="form_b">> 선택 개인정보의 항목 및 유형</b>
+                            <form>
+                                 <p>
+                                     <br><b>수집항목(선택)</b><br>
+                                     추가연락처, 메일주소, 최종학교명<br>
+                                     
+                                     <br>아래의 이유로 명시한 기간 동안 보존합니다.<br>
+                                     - 보존 항목: 추가연락처, 메일주소, 최종학교명<br>
+                                     - 보존 근거: 수강생의 휴학(군입대, 유학 등) 및 복학, 재등록 시 근거자료로 활용<br>
+                                     - 보존 기간: 5년<br><br><br>
+                                </p>
+                            </form>
+                            <div id="label_box">
+                                <label><input type="radio" name="question" value="agree">동의</label>
+                                <label><input type="radio" name="question" value="disagree">비동의</label>
+                            </div>
+                        </li>
+                        <li class="form_box">
+                            <b class="form_b">> 수집한 개인정보는 다음의 목적을 위해 활용합니다.</b>
+                            <form>
+                                <p>
+                                    <br>
+                                    영진직업전문학교(이하 직업학교)는 고용노동부가 공시한 '실업자등 직업능력개발훈련 실시규정'에 근거하여 직업훈련을 진행하고 있습니다.<br><br>
+
+                                    1. 실업자 등 직업능력개발훈련 운영에 있어 개인을 고유하게 구별하기 위해 부여된 식별정보(주민등록번호 등)를 포함한 개인정보를 다음과 같이 직업능력개발정보망(HRD-Net)에 수집․관리하고 있습니다.<br><br>
+                                    
+                                    2. 실업자 등 직업능력개발훈련 운영을 위해서 개인을 고유하게 구별하기 위해 부여된 식별정보(주민등록번호 등)를 포함한 개인정보가 필요하며, 직업학교는 「개인정보 보호법」에 따라 훈련생으로부터 제공받는 개인정보를 보호합니다.<br><br>
+                                    
+                                    3. 직업학교는 개인정보를 처리 목적에 필요한 범위에서 적합하게 처리하고 그 목적 외의 용도로 사용하지 않으며 개인정보를 제공한 훈련생은 언제나 자신이 입력한 개인정보의 열람․수정을 신청할 수 있습니다.<br><br><br>
+                                </p>
+                            </form>
+                            <div id="label_box">
+                                <label><input type="radio" name="question" value="agree">동의</label>
+                                <label><input type="radio" name="question" value="disagree">비동의</label>
+                            </div>
+                        </li>
+                    </ul>
+                    <!--콘텐츠4: 동의,취소 공간-->
+                    <div id="buttons">
+                        <div class="agree cancel">
+                            <ul><a href="#">
+                                <li><img src="images/동의.png" width="15px" height="15px"></li>
+                                <li>동의</li></a>
+                            </ul>
+                        </div>
+                        <div class="agree">
+                            <ul><a href="#">
+                                <li><img src="images/취소.png" width="15px" height="15px"></li>
+                                <li>취소</li></a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <ul>
+                        <li><p>자주하는 질문</p></li>
+                        <li class="link1">
+                            <ul>
+                                <li><a href="#">>> Home</a></li>
+                                <li>></li>
+                                <li><a href="#">입학상담</a></li>
+                                <li>></li>
+                                <li class="link2"><a href="#">자주하는 질문</a></li>
+                            </ul>
+                        </li>
+                        <li><img class="tab_img" src="images/contents_tab_item2.png"></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li><p>입학상담</p></li>
+                        <li class="link1">
+                            <ul>
+                                <li><a href="#">>> Home</a></li>
+                                <li>></li>
+                                <li><a href="#">입학상담</a></li>
+                                <li>></li>
+                                <li class="link2"><a href="#">입학상담</a></li>
+                            </ul>
+                        </li>
+                        <li><img class="tab_img" src="images/contents_tab_item3.png"></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li><p>접수상태확인</p></li>
+                        <li class="link1">
+                            <ul>
+                                <li><a href="#">>> Home</a></li>
+                                <li>></li>
+                                <li><a href="#">입학상담</a></li>
+                                <li>></li>
+                                <li class="link2"><a href="#">접수상태확인</a></li>
+                            </ul>
+                        </li>
+                        <li><img class="tab_img" src="images/contents_tab_item4.png"></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li><p>특화과정 입학상담</p></li>
+                        <li class="link1">
+                            <ul>
+                                <li><a href="#">>> Home</a></li>
+                                <li>></li>
+                                <li><a href="#">입학상담</a></li>
+                                <li>></li>
+                                <li class="link2"><a href="#">특화과정 입학상담</a></li>
+                            </ul>
+                        </li>
+                        <li><img class="tab_img" src="images/contents_tab_item5.png"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--푸터 부분-->
+    <footer>
+        <div id="footer_wrapper">
+            <p>개인정보보호정책 &nbsp;&nbsp;&nbsp;메일주소무단수집거부</p><br/>
+            <hr/><br/>
+            <p>회사명 : 영진직업전문학교 대표자 : 곽승호, 차영숙 cha8877@hanmail.net Tel : 053-983-8877 Fax : 053-722-2423 개인정보보호책임자 : 곽창운 cha8877@hanmail.net Tel : 053-983-8877 사업자번호 : 502-95-07029</p>
+            <p>701-835 대구광역시 동구 화랑로 525(용계동), 조경실습장 : 대구 동구 도동 806-21</p>
+            <p>opyright © 대구 국비지원 무료교육 영진직업전문학교. All Rights Reserved.</p>
+            <p><img src="./images/footer_sns01.png"><img src="./images/footer_sns02.png"><img src="./images/footer_sns03.png"><img src="./images/footer_sns04.png">
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

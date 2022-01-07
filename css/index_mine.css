@@ -1,0 +1,350 @@
+/* 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+}
+li {
+  display: inline;
+}
+body {
+  font-family: "Noto Sans KR", sans-serif;
+}
+a {
+  text-decoration: none;
+}
+
+/* 헤더 부분 */
+/* 헤더를 절대 좌표로 고정*/
+header {
+  background-color: white;
+  position: fixed;
+  width: 100%;
+}
+header > #header_top {
+  height: 30px;
+}
+header > #header_top > #header_gnb > ul {
+  text-align: right;
+  margin-right: 30px;
+}
+header > #header_top > #header_gnb > ul > li {
+  padding: 4px 10px;
+}
+header > #header_top > #header_gnb > ul > li > a {
+  font-size: 10pt;
+  color: rgb(100, 100, 100);
+}
+
+#header_bottom {
+  height: 80px;
+}
+header > #header_bottom > #header_lnb {
+  width: 1080px;
+  margin: 0 auto;
+  position: relative;
+}
+header > #header_bottom > #header_lnb > #title {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+header > #header_bottom > #header_lnb > #title > img {
+  float: right;
+}
+header > #header_bottom > #header_lnb > ul {
+  position: absolute;
+  top: 30px;
+  right: 0;
+}
+header > #header_bottom > #header_lnb > ul > li {
+  padding: 10px 20px;
+}
+header > #header_bottom > #header_lnb > ul > li > a {
+  color: black;
+  font-size: 14pt;
+  font-weight: bold;
+}
+
+/* 콘텐츠 부분 */
+/* 콘텐츠1: 메인이미지 공간 */
+
+/* 헤더를 절대 좌표로 고정시킬 때 그 높이만큼 위로 올려줌*/
+#contents > #mainimage_wrapper {
+  background-color: black;
+  padding-top: 110px;
+}
+#contents > #mainimage_wrapper > #mainimage {
+  width: 1800px;
+  height: 328px;
+  margin: 0 auto;
+}
+#contents > #mainimage_wrapper > #mainimage > img {
+  width: 1800px;
+  height: 328px;
+}
+
+/* 콘텐츠2 : 탭메뉴(모집중인 과정) 공간*/
+#contents > #class_wrapper {
+  background-color: #eeeeee;
+  height: 470px;
+}
+#contents > #class_wrapper > #class {
+  width: 1080px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+#class_tab > section > label {
+  display: block;
+  float: left;
+  width: 180px;
+  height: 50px;
+  border: 1px solid lightgray;
+  box-sizing: border-box;
+  background: white;
+  font-weight: bold;
+  text-align: center;
+  line-height: 50px;
+  color: #4e4e4e;
+}
+
+#class_tab > section > label:hover {
+  color: blueviolet;
+  cursor: pointer;
+}
+/* 커서모양 바꾸기 */
+
+#class_tab ul {
+  text-align: center;
+}
+#class_tab .item > a > img {
+  width: 266px;
+  padding-top: 5px;
+}
+
+#class_tab > input {
+  display: none;
+}
+#class_tab > div {
+  display: none;
+}
+
+/* 첫번째 라디오 버튼 눌럿을때 첫번째 div 보여라 */
+#class_tab > input:nth-of-type(1):checked ~ div:nth-of-type(1) {
+  display: block;
+}
+#class_tab > input:nth-of-type(2):checked ~ div:nth-of-type(2) {
+  display: block;
+}
+#class_tab > input:nth-of-type(3):checked ~ div:nth-of-type(3) {
+  display: block;
+}
+#class_tab > input:nth-of-type(4):checked ~ div:nth-of-type(4) {
+  display: block;
+}
+#class_tab > input:nth-of-type(5):checked ~ div:nth-of-type(5) {
+  display: block;
+}
+#class_tab > input:nth-of-type(6):checked ~ div:nth-of-type(6) {
+  display: block;
+}
+#class_tab > input:nth-of-type(7):checked ~ div:nth-of-type(7) {
+  display: block;
+}
+#class_tab > input:nth-of-type(8):checked ~ div:nth-of-type(8) {
+  display: block;
+}
+#class_tab > input:nth-of-type(9):checked ~ div:nth-of-type(9) {
+  display: block;
+}
+#class_tab > input:nth-of-type(10):checked ~ div:nth-of-type(10) {
+  display: block;
+}
+#class_tab > input:nth-of-type(11):checked ~ div:nth-of-type(11) {
+  display: block;
+}
+#class_tab > input:nth-of-type(12):checked ~ div:nth-of-type(12) {
+  display: block;
+}
+
+/* 첫번째 라디오 눌럿을때 라벨 표시 */
+#class_tab
+  > input:nth-of-type(1):checked
+  ~ .class_buttons
+  > label:nth-of-type(1) {
+  color: #106aca;
+  border-bottom: 3px solid #106aca;
+}
+#class_tab
+  > input:nth-of-type(2):checked
+  ~ .class_buttons
+  > label:nth-of-type(2) {
+  color: #106aca;
+  border-bottom: 3px solid #106aca;
+}
+#class_tab
+  > input:nth-of-type(3):checked
+  ~ .class_buttons
+  > label:nth-of-type(3) {
+  color: #106aca;
+  border-bottom: 3px solid #106aca;
+}
+#class_tab
+  > input:nth-of-type(4):checked
+  ~ .class_buttons
+  > label:nth-of-type(4) {
+  color: #106aca;
+  border-bottom: 3px solid #106aca;
+}
+#class_tab
+  > input:nth-of-type(5):checked
+  ~ .class_buttons
+  > label:nth-of-type(5) {
+  color: #106aca;
+  border-bottom: 3px solid #106aca;
+}
+#class_tab
+  > input:nth-of-type(6):checked
+  ~ .class_buttons
+  > label:nth-of-type(6) {
+  color: #106aca;
+  border-bottom: 3px solid #106aca;
+}
+#class_tab
+  > input:nth-of-type(7):checked
+  ~ .class_buttons
+  > label:nth-of-type(7) {
+  color: #106aca;
+  border-bottom: 3px solid #106aca;
+}
+#class_tab
+  > input:nth-of-type(8):checked
+  ~ .class_buttons
+  > label:nth-of-type(8) {
+  color: #106aca;
+  border-bottom: 3px solid #106aca;
+}
+#class_tab
+  > input:nth-of-type(9):checked
+  ~ .class_buttons
+  > label:nth-of-type(9) {
+  color: #106aca;
+  border-bottom: 3px solid #106aca;
+}
+#class_tab
+  > input:nth-of-type(10):checked
+  ~ .class_buttons
+  > label:nth-of-type(10) {
+  color: #106aca;
+  border-bottom: 3px solid #106aca;
+}
+#class_tab
+  > input:nth-of-type(11):checked
+  ~ .class_buttons
+  > label:nth-of-type(11) {
+  color: #106aca;
+  border-bottom: 3px solid #106aca;
+}
+#class_tab
+  > input:nth-of-type(12):checked
+  ~ .class_buttons
+  > label:nth-of-type(12) {
+  color: #106aca;
+  border-bottom: 3px solid #106aca;
+}
+
+/* 콘텐츠3: 탭메뉴(구직자 직장인 교육) 공간 */
+#contents > #edu_wrapper {
+  background-color: white;
+}
+#contents > #edu_wrapper > #edu {
+  width: 1080px;
+  margin: 0 auto;
+}
+
+#edu_tab {
+  padding: 20px 0;
+}
+#edu_tab > section {
+  overflow: hidden;
+}
+#edu_tab > input {
+  display: none;
+}
+#edu_tab > div {
+  display: none;
+}
+
+#edu_tab ul {
+  text-align: center;
+}
+#edu_tab .item > a > img {
+  padding-top: 10px;
+  width: 1080px;
+}
+
+#edu_tab > section > label {
+  display: block;
+  float: left;
+  width: 540px;
+  height: 50px;
+  border: 1px solid lightgray;
+  box-sizing: border-box;
+  background: white;
+  font-weight: bold;
+  text-align: center;
+  line-height: 50px;
+  color: #4e4e4e;
+}
+
+#edu_tab > section > label:hover {
+  color: blueviolet;
+  cursor: pointer;
+}
+/* a태그를 주지 않아도 클릭이 되었을때 커서 모양 바꾸기 */
+
+#edu_tab > input:nth-of-type(1):checked ~ div:nth-of-type(1) {
+  display: block;
+}
+#edu_tab > input:nth-of-type(2):checked ~ div:nth-of-type(2) {
+  display: block;
+}
+
+/* 첫번째 라디오 눌럿을때 라벨 표시 */
+#edu_tab
+  > input:nth-of-type(1):checked
+  ~ .class_buttons
+  > label:nth-of-type(1) {
+  color: #106aca;
+  border-bottom: 3px solid #106aca;
+}
+#edu_tab
+  > input:nth-of-type(2):checked
+  ~ .class_buttons
+  > label:nth-of-type(2) {
+  color: #106aca;
+  border-bottom: 3px solid #106aca;
+}
+
+/* 푸터 부분 */
+footer {
+  background: #333333;
+  padding: 20px 0;
+}
+footer > #footer_wrapper {
+  width: 1200px;
+  margin: 0 auto;
+  font-size: 11pt;
+  line-height: 25px;
+  color: #aaaaaa;
+}
+
+/* 수평선 스타일 바꾸기 dashed(점선) */
+footer > #footer_wrapper > hr {
+  border: 1px dashed #aaaaaa;
+}
+
+footer > #footer_wrapper img {
+  width: 30px;
+  margin: 5px;
+}

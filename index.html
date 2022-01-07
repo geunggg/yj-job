@@ -1,0 +1,617 @@
+<!-- 능력단위평가 _ 웹프로그래밍, 메인페이지, 김지은-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <title>대구 국비지원 무료교육 영진직업전문학교</title>
+
+
+    <!-- 캐러셀 이미지 구현을 위한 css 링크-->
+    <link rel="stylesheet" href="./css/jquery.bxslider.css">
+    <!-- 스타일 시트 외부 파일로 연결하기 -->
+    <link rel="stylesheet" href="./css/index_mine.css">
+
+    <style>
+    
+    /* 초기화 */
+
+    * {margin: 0; padding:0;}
+    li {display: inline;}
+    body {font-family:'나눔고딕';}
+    a {text-decoration: none;}
+
+
+    /* 헤더 부분 */
+    /* fixed- 헤더를 절대 좌표로 고정
+       z-index- 헤더가 제일 위에 올라오게 */
+    header {background-color: white; position:fixed ;width:100%; z-index: 9999;} 
+
+    /* gnb 왼쪽정렬, lnb 중앙정렬 top,bottom으로 나눠줌 */
+    header > #header_top {height:30px;}
+    header > #header_top > #header_gnb > ul {text-align: right; margin-right: 30px;}
+    header > #header_top > #header_gnb > ul > li {padding: 4px 10px;}
+    header > #header_top > #header_gnb > ul > li > a {font-size: 10pt ; color:rgb(100, 100, 100);}
+
+    #header_bottom {height:80px;}
+    header > #header_bottom > #header_lnb {width:1080px; margin:0 auto; position: relative;}
+    header > #header_bottom > #header_lnb > #title {position:absolute; left:0; top:0;}
+    header > #header_bottom > #header_lnb > #title > img {float:right;}
+    header > #header_bottom > #header_lnb > ul {position:absolute; top:30px; right:0;}
+    header > #header_bottom > #header_lnb > ul > li {padding: 10px 20px;}
+    header > #header_bottom > #header_lnb > ul > li > a {color: black; font-size: 14pt; font-weight: bold;}
+
+
+
+
+    /* 콘텐츠 부분 */
+
+    /* 콘텐츠1 : 메인이미지 공간 */
+    #wrapper {width:1800px; margin:0 auto;}
+
+    #contents > hr {width:100%; border: 1px solid #106aca;}
+     /* 헤더를 절대 좌표로 고정시킬 때 그 높이만큼 위로 올려줌*/
+    #contents > #mainimage_wrapper {padding-top: 110px; background-color: black;} 
+    #contents > #mainimage_wrapper .mainimage {width:1800px; height:328px;  margin: 0 auto;}
+    #contents > #mainimage_wrapper .mainimage > img {width:1800px; height:328px;}
+
+    /* 콘텐츠2 : 탭메뉴(모집중인 과정) 공간*/
+    #contents > #class_wrapper {background-color: #eeeeee; height: 470px;}
+    #contents > #class_wrapper > #class {width:1080px; margin: 0 auto; padding-top: 20px;}
+
+    #class_tab > section > label {display: block; float:left; width:180px; height:50px; border:1px solid lightgray; box-sizing: border-box; background: white; font-weight: bold; text-align: center; line-height: 50px; color: #4e4e4e;}
+    
+    /* 마우스 올렸을 때 라벨 표시 */
+    #class_tab > section > label:hover {color: blueviolet; cursor:pointer;}    /* 커서모양 바꾸기 pointer-손모양*/
+    #class_tab ul {text-align: center;}
+    #class_tab > div > ul > .item > a > img {width:265px; padding-top: 5px;}
+    
+    /* radio, div 숨기기 */
+    #class_tab > input {display: none;}
+    #class_tab > div {display: none;}
+    
+    /* 첫번째 라디오 버튼 눌럿을때 첫번째 div 보여라~ */
+    #class_tab > input:nth-of-type(1):checked ~ div:nth-of-type(1) {display: block;}
+    #class_tab > input:nth-of-type(2):checked ~ div:nth-of-type(2) {display: block;}
+    #class_tab > input:nth-of-type(3):checked ~ div:nth-of-type(3) {display: block;}
+    #class_tab > input:nth-of-type(4):checked ~ div:nth-of-type(4) {display: block;}
+    #class_tab > input:nth-of-type(5):checked ~ div:nth-of-type(5) {display: block;}
+    #class_tab > input:nth-of-type(6):checked ~ div:nth-of-type(6) {display: block;}
+    #class_tab > input:nth-of-type(7):checked ~ div:nth-of-type(7) {display: block;}
+    #class_tab > input:nth-of-type(8):checked ~ div:nth-of-type(8) {display: block;}
+    #class_tab > input:nth-of-type(9):checked ~ div:nth-of-type(9) {display: block;}
+    #class_tab > input:nth-of-type(10):checked ~ div:nth-of-type(10) {display: block;}
+    #class_tab > input:nth-of-type(11):checked ~ div:nth-of-type(11) {display: block;}
+    #class_tab > input:nth-of-type(12):checked ~ div:nth-of-type(12) {display: block;}
+
+
+    /* 첫번째 라디오 눌럿을때 라벨 표시 */
+    #class_tab > input:nth-of-type(1):checked ~ .class_buttons > label:nth-of-type(1) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #class_tab > input:nth-of-type(2):checked ~ .class_buttons > label:nth-of-type(2) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #class_tab > input:nth-of-type(3):checked ~ .class_buttons > label:nth-of-type(3) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #class_tab > input:nth-of-type(4):checked ~ .class_buttons > label:nth-of-type(4) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #class_tab > input:nth-of-type(5):checked ~ .class_buttons > label:nth-of-type(5) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #class_tab > input:nth-of-type(6):checked ~ .class_buttons > label:nth-of-type(6) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #class_tab > input:nth-of-type(7):checked ~ .class_buttons > label:nth-of-type(7) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #class_tab > input:nth-of-type(8):checked ~ .class_buttons > label:nth-of-type(8) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #class_tab > input:nth-of-type(9):checked ~ .class_buttons > label:nth-of-type(9) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #class_tab > input:nth-of-type(10):checked ~ .class_buttons > label:nth-of-type(10) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #class_tab > input:nth-of-type(11):checked ~ .class_buttons > label:nth-of-type(11) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #class_tab > input:nth-of-type(12):checked ~ .class_buttons > label:nth-of-type(12) {color:#106aca; border-bottom: 3px solid #106aca;}
+
+
+    /* 콘텐츠3: 탭메뉴(구직자 직장인 교육) 공간 */
+    #contents > #edu_wrapper {background-color: white;}
+    #contents > #edu_wrapper > #edu {width: 1080px; margin: 0 auto;}
+
+    #edu_tab {padding: 20px 0 ;}
+    #edu_tab > section {overflow: hidden;}
+    #edu_tab > input {display: none;}
+    #edu_tab > div {display: none;}
+
+    #edu_tab ul {text-align: center;}
+    #edu_tab .item > a > img {padding-top: 10px; width:1080px;}
+
+    #edu_tab > section > label {display: block; float:left; width:540px; height:50px; border:1px solid lightgray; box-sizing: border-box; background: white; font-weight: bold; text-align: center; line-height: 50px; color:#4e4e4e;}
+
+    #edu_tab > section > label:hover {color: blueviolet; cursor:pointer;} /* a태그를 주지 않아도 클릭이 되었을때 커서 모양 바꾸기 */
+
+    /* 첫번째 라디오 버튼 눌럿을때 첫번째 div 보여라~ */
+    #edu_tab > input:nth-of-type(1):checked ~ div:nth-of-type(1) {display: block;}
+    #edu_tab > input:nth-of-type(2):checked ~ div:nth-of-type(2) {display: block;}
+
+    /* 첫번째 라디오 눌럿을때 라벨 표시 */
+    #edu_tab > input:nth-of-type(1):checked ~ .class_buttons > label:nth-of-type(1) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #edu_tab > input:nth-of-type(2):checked ~ .class_buttons > label:nth-of-type(2) {color:#106aca; border-bottom: 3px solid #106aca;}
+
+   
+    /* 콘텐츠4: description 공간 */
+
+    #description_wrapper {width:100%; height:700px;}
+    #description {width:1080px; margin:0 auto; padding-top: 50px;position:relative;}
+    #description > .description_box {width:540px; height:360px; float:left;}
+    #description > .description_box > p {font-size: 15pt; text-align: left; font-weight: bold; padding-bottom: 10px;} 
+    #description > .description_box > ul {width:530px; height:300px;border-top:1px solid #aaaaaa;} 
+
+    /* 취업후기 이미지 부분 */
+    #description > .description_box #epilogue {width:530px; height:300px; border-top: 1px solid #aaaaaa; padding-top: 10px;}
+    
+    /* 입학상담, 취업센터 글 부분 */
+    .detail {width:530px; height:50px; box-sizing: border-box; float: left; line-height: 60px; border-bottom:1px solid #dddddd;}
+    .detail li {margin-left: 10px;}
+    .detail:hover {background-color: #f7f7f7; border-bottom:1px dashed #aaaaaa;}
+    .detail > a:hover {color:blueviolet; text-decoration:underline solid blueviolet;}
+    .detail > a { color:#505050; font-size: 11pt;}
+    .detail > a .date {float:right; font-size:9pt; color: #c2c2c2}
+    
+    /* 홍보영상 부분 */
+    #description > .description_box > video {border-top: 1px solid #aaaaaa; padding-top:10px;}
+   
+
+    /* 콘텐츠5: 탭메뉴(포토폴리오) 공간 */
+    #contents > #portpolio_wrapper {background-color: white; height: 580px;}
+    #contents > #portpolio_wrapper > #portpolio {width:1080px; margin: 0 auto; padding-top: 20px;}
+
+    #contents > #portpolio_wrapper > #portpolio > p {font-size: 15pt; text-align: center; font-weight: bold; padding-bottom: 10px;}
+    
+    #portpolio_wrapper {padding-top: 100px;}
+    #portpolio_tab ul {text-align: center;}
+    #portpolio_tab .item img {width:1080px; padding-top: 5px;}
+    
+    /* radio, div 숨기기 */
+    #portpolio_tab > input {display: none;}
+    #portpolio_tab > div {display: none;}
+    
+    #portpolio_tab > section {padding-top: 10px;}
+    #portpolio_tab > section > label {display: block; float:left; width:180px; height:50px; border:1px solid lightgray; box-sizing: border-box; background: white; font-weight: bold; text-align: center; line-height: 50px; color: #4e4e4e;}
+
+    #portpolio_tab > section > label:hover {color: blueviolet; cursor:pointer;} /* 커서모양 바꾸기 */
+
+    /* 첫번째 라디오 버튼 눌럿을때 첫번째 div 보여라~ */
+    #portpolio_tab > input:nth-of-type(1):checked ~ div:nth-of-type(1) {display: block;}
+    #portpolio_tab > input:nth-of-type(2):checked ~ div:nth-of-type(2) {display: block;}
+    #portpolio_tab > input:nth-of-type(3):checked ~ div:nth-of-type(3) {display: block;}
+    #portpolio_tab > input:nth-of-type(4):checked ~ div:nth-of-type(4) {display: block;}
+    #portpolio_tab > input:nth-of-type(5):checked ~ div:nth-of-type(5) {display: block;}
+    #portpolio_tab > input:nth-of-type(6):checked ~ div:nth-of-type(6) {display: block;}
+
+    /* 첫번째 라디오 눌럿을때 라벨 표시 */
+    #portpolio_tab > input:nth-of-type(1):checked ~ .portpolio_buttons > label:nth-of-type(1) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #portpolio_tab > input:nth-of-type(2):checked ~ .portpolio_buttons > label:nth-of-type(2) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #portpolio_tab > input:nth-of-type(3):checked ~ .portpolio_buttons > label:nth-of-type(3) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #portpolio_tab > input:nth-of-type(4):checked ~ .portpolio_buttons > label:nth-of-type(4) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #portpolio_tab > input:nth-of-type(5):checked ~ .portpolio_buttons > label:nth-of-type(5) {color:#106aca; border-bottom: 3px solid #106aca;}
+    #portpolio_tab > input:nth-of-type(6):checked ~ .portpolio_buttons > label:nth-of-type(6) {color:#106aca; border-bottom: 3px solid #106aca;}
+
+    /* 콘텐츠6 : 아이콘 공간*/
+    #icon_wrapper {width:100% ; height: 150px;}
+    #icon {width:1080px; margin: 0 auto; padding-top: 20px;border:1px solid #dddddd; height: 110px;}
+
+    /*icon_box, icon_center 세로 중앙정렬 padding 크기 달라서 나눠줌*/
+    .icon_box { padding:5px 20px; width:270px; height:90px; box-sizing: border-box; float:left;}
+
+    .icon_box > a {color:black;}
+    .icon_box > a > .thumbnail > b {font-size: 14pt;}
+    .icon_box > a > .thumbnail > p {font-size: 12pt; padding-top: 5px;}
+    /* 사진 오른쪽 부분 띄우기 */
+    .icon_box .photo {float:left; margin-right: 15px;}
+
+
+    .icon_center { padding:5px 20px; width:270px; height:90px; box-sizing: border-box; float:left;}
+    .icon_center > a {color:black;}
+    .icon_center > a > .thumbnail > b {font-size:14pt; line-height: 32px;}
+    .icon_center > a > .thumbnail > p {font-size: 12pt; padding-top: 5px;}
+    .icon_center .photo {float:left; margin-right: 15px;}
+   
+    .thumdnail {float:left; margin-left:10px; width:200px;}
+
+
+    /* 콘텐츠7: 입학상단 박스 공간 */
+    
+    #entrance_wrapper {width:100%; padding-bottom: 50px;}
+    #entrance {width:1080px; height: 97px; margin:0 auto; background-color: #f7f7f7; border: 1px solid #dddddd; border-radius: 5px 5px 5px 5px; }
+    
+    
+
+    /* 푸터 부분 */
+    footer {background: #333333; padding: 20px 0 ;}
+    footer > #footer_wrapper {width:1200px; margin:0 auto;
+        font-size:11pt; line-height: 25px; color: #aaaaaa;}
+
+    /* 수평선 스타일 바꾸기 dashed(점선) */
+    footer > #footer_wrapper > hr {border: 1px dashed #aaaaaa ; }
+
+    footer > #footer_wrapper img {width:30px; margin:5px;}
+
+
+    </style>
+</head>
+
+<body>
+    <!--헤더 부분-->
+    <header>
+        <div id="header_top">
+            <nav id="header_gnb">
+                <ul>
+                    <li><a href="#">학생관리</a></li>
+                    <li><a href="#">NCS평가</a></li>
+                    <li><a href="#">시험응시</a></li>
+                    <li><a href="#">정보수정</a></li>
+                    <li><a href="#">회원탈퇴</a></li>
+                    <li><a href="#">로그아웃</a></li>
+                    <li><a href="#">사이트맵</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div id="header_bottom">
+            <nav id="header_lnb">
+                <div id="title"><img src="images/kb_log.png"><br>
+                    <img src="images/yj_log.png"></div>
+                <ul>
+                    <li><a href="#">모집과정</a></li>
+                    <li><a href="sub.html">입학상담</a></li>
+                    <li><a href="#">과정소개</a></li>
+                    <li><a href="#">취업센터</a></li>
+                    <li><a href="#">커뮤니티</a></li>
+                    <li><a href="#">학교소개</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!--콘텐츠 부분-->
+    <div id="contents">
+        <!-- 공간 만들고 공간->중간정렬 그 공간안에 이미지 넣을 공간 만듬 -->
+        <!-- 콘텐츠1: 메인 이미지 공간 -->
+        <div id="mainimage_wrapper">
+            <div id="wrapper">
+                <div class="bxslider">
+                    <div class="mainimage"><img src="images/mainimage01.JPG"></div>
+                    <div class="mainimage"><img src="images/mainimage04.png"></div>
+                    <div class="mainimage"><img src="images/mainimage02.JPG"></div>
+                    <div class="mainimage"><img src="images/mainimage03.png"></div>
+                    <div class="mainimage"><img src="images/mainimage04.JPG"></div>
+                </div>
+            </div>
+        </div>
+        <!-- 콘텐츠2: 탭메뉴(모집중인 과정) 공간 -->
+        <div id="class_wrapper">
+            <div id="class">
+                <div id="class_tab">
+                    <input id="class_1" type="radio" name="class_tab" checked="checked"/>
+                    <input id="class_2" type="radio" name="class_tab"/>
+                    <input id="class_3" type="radio" name="class_tab"/>
+                    <input id="class_4" type="radio" name="class_tab"/>
+                    <input id="class_5" type="radio" name="class_tab"/>
+                    <input id="class_6" type="radio" name="class_tab"/>
+                    <input id="class_7" type="radio" name="class_tab"/>
+                    <input id="class_8" type="radio" name="class_tab"/>
+                    <input id="class_9" type="radio" name="class_tab"/>
+                    <input id="class_10" type="radio" name="class_tab"/>
+                    <input id="class_11" type="radio" name="class_tab"/>
+                    <input id="class_12" type="radio" name="class_tab"/>
+                    <section class="class_buttons">
+                        <label for="class_1">전체과정</label>
+                        <label for="class_2">IT/SW</label>
+                        <label for="class_3">전기PLC</label>
+                        <label for="class_4">기계설계</label>
+                        <label for="class_5">디자인</label>
+                        <label for="class_6">용접</label>
+                        <label for="class_7">공조냉동</label>
+                        <label for="class_8">조경/중장비</label>
+                        <label for="class_9">가구/공예</label>
+                        <label for="class_10">경영회계</label>
+                        <label for="class_11">패션봉제</label>
+                        <label for="class_12">요리</label>
+                    </section>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/class_tab_item01.png"></a></li>
+                            <li class="item"><a href="#"><img src="images/class_tab_item03.png"></a></li>
+                            <li class="item"><a href="#"><img src="images/class_tab_item05.png"></a></li>
+                            <li class="item"><a href="#"><img src="images/class_tab_item07.png"></a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/class_tab_item01.png"></a></li>
+                            <li class="item"><a href="#"><img src="images/class_tab_item02.png"></a></li>
+                            <li class="item"><a href="#"><img src="images/class_tab_item03.png"></a></li>
+                            <li class="item"><a href="#"><img src="images/class_tab_item04.png"></a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/class_tab_item05.png"></a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/class_tab_item06.png"></a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/class_tab_item07.png"></a></li>
+                            <li class="item"><a href="#"><img src="images/class_tab_item08.png"></a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/class_tab_item09.png"></a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/class_tab_item10.png"></a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/class_tab_item11.png"></a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/class_tab_item12.png"></a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/class_tab_item13.png"></a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/class_tab_item14.png"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 콘텐츠3: 탭메뉴(구직자 직장인 교육) 공간-->
+        <div id="edu_wrapper">
+            <div id="edu">
+                <div id="edu_tab">
+                    <input id="edu_1" type="radio" name="edu_tab">
+                    <input id="edu_2" type="radio" name="edu_tab">
+                    <section class="class_buttons">
+                        <label for="edu_1">구직자를 위한 교육</label>
+                        <label for="edu_2">직장인을 위한 교육</label>
+                    </section>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/edu_tab_item01.png"></a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/edu_tab_item02.png"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- 콘텐츠4: description 공간 -->
+        <div id="description_wrapper">
+            <div id="description">
+                <div class="description_box">
+                    <p>입학상담</p>
+                    <ul>
+                        <li class="detail"><a href="#">
+                            <ul>
+                                <li>수업</li>
+                                <li class="date">2021.05.03</li>
+                            </ul>
+                        </a></li>
+                        <li class="detail"><a href="#">
+                            <ul>
+                                <li>요리 고교위탁교육</li>
+                                <li class="date">2021.04.31</li>
+                            </ul>
+                        </a></li>
+                        <li class="detail"><a href="#">
+                            <ul>
+                                <li>가구제작 입학상담</li>
+                                <li class="date">2021.04.28</li>
+                            </ul>
+                        </a></li>
+                        <li class="detail"><a href="#">
+                            <ul>
+                                <li>정보보안산업기사에 대해</li>
+                                <li class="date">2021.04.21</li>
+                            </ul>
+                        </a></li>
+                        <li class="detail"><a href="#">
+                            <ul>
+                                <li>조경기사 모집과정</li>
+                                <li class="date">2021.04.15</li>
+                                <img src="images/icon_hot.gif">
+                            </ul>
+                        </a></li>
+                        <li class="detail"><a href="#">
+                            <ul>
+                                <li>가구공예교육관련 문의</li>
+                                <li class="date">2021.04.08</li>
+                            </ul>
+                        </a></li>
+                    </ul>
+                </div>
+                <div class="description_box">
+                    <p>취업센터</p>
+                    <ul>
+                        <li class="detail"><a href="#">
+                            <ul>
+                                <li>취업지원센터 소개영상</li>
+                                <img src="images/icon_hot.gif">
+                                <li class="date">2021.05.03</li>
+                            </ul>
+                        </a></li>
+                        <li class="detail"><a href="#">
+                            <ul>
+                                <li>입사지원서 양식_중장년층</li>
+                                <img src="images/icon_hot.gif">
+                                <li class="date">2021.04.31</li>
+                            </ul>
+                        </a></li>
+                        <li class="detail"><a href="#">
+                            <ul>
+                                <li>자기소개서 작성 꿀팁!</li>
+                                <img src="images/icon_hot.gif">
+                                <li class="date">2021.04.28</li>
+                            </ul>
+                        </a></li>
+                        <li class="detail"><a href="#">
+                            <ul>
+                                <li>입사지원서 양식_청년층</li>
+                                <img src="images/icon_hot.gif">
+                                <li class="date">2021.04.21</li>
+                            </ul>
+                        </a></li>
+                        <li class="detail"><a href="#">
+                            <ul>
+                                <li>2021년도 새롭게 시행되는 국민취업지원제도</li>
+                                <img src="images/icon_hot.gif">
+                                <li class="date">2021.04.15</li>
+                            </ul>
+                        </a></li>
+                        <li class="detail"><a href="#">
+                            <ul>
+                                <li>2021년 최저임금</li>
+                                <img src="images/icon_hot.gif">
+                                <li class="date">2021.04.08</li>
+                            </ul>
+                        </a></li>
+                    </ul>
+                </div>
+                <div class="description_box">
+                    <p>취업후기</p>
+                    <a href="#"><img id="epilogue" src="images/description_3.png"></a>
+                </div><br>
+                <div class="description_box">
+                    <p>홍보영상</p>
+                    <video src="images/video.mp4" controls="controls" width="530px" height="300px"></video>
+                </div>
+            </div>
+        </div>
+        <!--콘텐츠5: 포토폴리오 탭 공간-->
+        <div id="portpolio_wrapper">
+            <div id="portpolio">
+                <p>포트폴리오</p>
+                <div id="portpolio_tab">
+                    <input id="portpolio_1" type="radio" name="portpolio_tab" checked="checked"/>
+                    <input id="portpolio_2" type="radio" name="portpolio_tab"/>
+                    <input id="portpolio_3" type="radio" name="portpolio_tab"/>
+                    <input id="portpolio_4" type="radio" name="portpolio_tab"/>
+                    <input id="portpolio_5" type="radio" name="portpolio_tab"/>
+                    <input id="portpolio_6" type="radio" name="portpolio_tab"/>
+                    <section class="portpolio_buttons">
+                        <label for="portpolio_1">IT/SW</label>
+                        <label for="portpolio_2">기계설계</label>
+                        <label for="portpolio_3">디자인</label>
+                        <label for="portpolio_4">용접/공조</label>
+                        <label for="portpolio_5">조경/중장비</label>
+                        <label for="portpolio_6">가구/공예</label>
+                    </section>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/portpolio_tab_item1.png"></a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/portpolio_tab_item2.png"></a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/portpolio_tab_item3.png"></a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/portpolio_tab_item4.png"></a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/portpolio_tab_item5.png"></a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="item"><a href="#"><img src="images/portpolio_tab_item6.png"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--콘텐츠6: 아이콘 공간 -->
+        <div id="icon_wrapper">
+            <div id="icon">
+                <ul>
+                    <li class="icon_box"><a href="#">
+                        <div class="photo"><img src="images/icon_school.png" width="70px" height="70px"/></div>
+                        <div class="thumbnail"><b>교육시설</b><p>최고의 시설과<br>최신 장비들을 한눈에</p></div>
+                        </a>
+                    </li>
+                    <li class="icon_center"><a href="#">
+                        <div class="photo"><img src="images/icon_mouse.png" width="70px" height="70px"/></div>
+                        <div class="thumbnail"><b>산학관(취업)<br>
+                            협력업체 소개</b></div>
+                        </a>
+                    </li>
+                    <li class="icon_box"><a href="#">
+                        <div class="photo"><img src="images/icon_idcard.png" width="70px" height="70px"/></div>
+                        <div class="thumbnail"><b>구인공고등록</b><p>인재모집을 위한<br>
+                            구인공고 등록</p></div>
+                        </a>
+                    </li>
+                    <li class="icon_center"><a href="#">
+                        <div class="photo"><img src="images/icon_camera.png" width="70px" height="70px"/></div>
+                        <div class="thumbnail"><b>YJ재능 기부봉사단
+                            소개</b></div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 콘텐츠7: 입학상단 박스 공간 -->
+        <div id="entrance_wrapper">
+            <div id="entrance"><img src="images/입학상담.png" width="1080px" hegiht="97px"></div>
+        </div>
+    </div>
+    <!--푸터 부분-->
+    <footer>
+        <div id="footer_wrapper">
+            <p>개인정보보호정책 &nbsp;&nbsp;&nbsp;메일주소무단수집거부</p><br/>
+            <hr/><br/>
+            <p>회사명 : 영진직업전문학교 대표자 : 곽승호, 차영숙 cha8877@hanmail.net Tel : 053-983-8877 Fax : 053-722-2423 개인정보보호책임자 : 곽창운 cha8877@hanmail.net Tel : 053-983-8877 사업자번호 : 502-95-07029</p>
+            <p>701-835 대구광역시 동구 화랑로 525(용계동), 조경실습장 : 대구 동구 도동 806-21</p>
+            <p>opyright © 대구 국비지원 무료교육 영진직업전문학교. All Rights Reserved.</p>
+            <p><img src="./images/footer_sns01.png""><img src="./images/footer_sns02.png""><img src="./images/footer_sns03.png""><img src="./images/footer_sns04.png"">
+            </p>
+        </div>
+    </footer>
+
+    <!--캐러셀 이미지 구현을 위한 지원 부분-->
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/jquery.bxslider.js"></script>
+
+    <script>
+        $(function() {
+          $('.bxslider').bxSlider({
+						slideWidth:1800,
+            captions:true,
+            auto:true,
+            autoControls:true,
+            stopAutoOnclick:true,
+          });
+        });
+    </script>
+</body>
+</html>
